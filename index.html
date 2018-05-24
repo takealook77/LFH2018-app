@@ -13,44 +13,38 @@
   </head>
 
   <body ng-controller="ementaCtrl">
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">ia3vp</a>
+      <a class="navbar-brand" href="#">ia3vp (Protótipo)</a>
 
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Classificar <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Processo..." disabled="disabled">
-          <button class="btn btn-inverse my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
-      </div>
     </nav>
 
-    <div class="jumbotron">
+    <div class="jumbotron" ng-show="!ementa">
       <div class="container">
-        <h1 class="display-5">Classificação de processo pela ementa</h1>
         <form>
-        	<textarea class="form-control" rows="10" ng-model="ementa"></textarea>
-        	<a class="btn btn-primary btn-lg" href="#" role="button">Analisar &raquo;</a>
+        	<button class="btn btn-link" ng-click="ementa = 'PROCESSUAL CIVIL - CONFLITO NEGATIVO DE COMPETÊNCIA - DISCUSSÃO ENTRE VARA DE DIREITO BANCÁRIO (SUSCITANTE) E VARA CÍVEL (SUSCITADA), AMBAS DA COMARCA DE SÃO JOSÉ - AÇÃO REVISIONAL - CONTRATO DE MÚTUO FIRMADO COM COOPERATIVA DE CRÉDITO - INSTITUIÇÃO FINANCEIRA FISCALIZADA PELO BANCO CENTRAL - INTELIGÊNCIA DO ART. 1º, CAPUT E § 1º, DA LEI COMPLEMENTAR N. 130/2009 - DEBATE ACERCA DE ENCARGOS DE NATUREZA BANCÁRIA ALEGADAMENTE ABUSIVOS E ILEGAIS - MATÉRIA ABRANGIDA PELO DIREITO BANCÁRIO - CONFLITO IMPROCEDENTE - COMPETÊNCIA DA VARA DE DIREITO BANCÁRIO SUSCITANTE.<br>   É das varas de Direito Bancário a competência para julgar feitos envolvendo pleito revisional de contrato de mútuo firmado com cooperativa de crédito - que legalmente é considerada instituição financeira fiscalizada pelo Bacen -, em demanda onde haja discussão acerca de encargos de natureza bancária alegadamente abusivos e ilegais.'">
+        		Usar exemplo de ementa ...
+        	</button>
+        	<textarea class="form-control" rows="10" ng-model="ementa" placeholder="Cole aqui o texto da ementa..."></textarea>
         </form>
       </div>
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
+    	<br>
+      <div class="row" ng-show="ementa">
         <div class="col-md-12">
           <h2>Análise textual</h2>
           <p ng-bind-html="getAnaliseTextual()"></p>
           <p><a class="btn btn-secondary" href="#" role="button">Detalhes &raquo;</a></p>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-6">
+          <h2>Classificações</h2>
+          <p><a class="btn btn-secondary" href="#" role="button">Detalhes &raquo;</a></p>
+        </div>
+		<div class="col-md-6">
           <h2>Processos similares</h2>
           <p><a class="btn btn-secondary" href="#" role="button">Detalhes &raquo;</a></p>
         </div>
@@ -61,7 +55,7 @@
       <footer>
         <p>&copy; <a href="https://github.com/ia-tjsc">https://github.com/ia-tjsc</a></p>
       </footer>
-    </div> <!-- /container -->
+    </div>
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -70,5 +64,9 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular-sanitize.js" crossorigin="anonymous"></script>
 		
 	<script src="app.js"></script>
+	
+	<pre>
+	{{classificacoes | json}}
+	</pre>
   </body>
 </html>
