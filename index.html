@@ -25,7 +25,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Busca" />
+					<input type="text" class="form-control" placeholder="Busca" ng-model="searchText" />
 					<span class="input-group-btn">
 						<button class="btn btn-primary" type="button">
 							<span class="fa fa-search"></span>
@@ -40,16 +40,22 @@
 					<br>
 				</div>
 				<div class="list-group list-group-flush">
-					<a ng-repeat="acordao in acordaos" href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+					<div ng-repeat="acordao in acordaos | filter:searchText " class="list-group-item list-group-item-action flex-column align-items-start">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1">{{acordao.processo}}
-								<button type="button" class="btn btn-sm btn-light"> Bancário</button>
+							<h5 class="mb-1">
+								{{acordao.processo | cnj}}
 							</h5>
+							
 							<small>{{acordao.movimentacao | date:'dd/MM/yy'}}</small>
 						</div>
 						<p class="mb-1">{{acordao.classe}}</p>
-						<small>{{acordao.ementa	| limitTo: 100 | lowercase }}{{acordao.ementa .length > 100 ? '...' : ''}}</small> <br>
-					</a>
+						<p>
+							<small>{{acordao.ementa	| limitTo: 100 | lowercase }}{{acordao.ementa .length > 100 ? '...' : ''}}</small>
+						</p>
+						<p>
+							<button ng-repeat="classificacao in acordao.classificacoes" type="button" class="btn btn-sm btn-light"> {{classificacao}}</button>
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
