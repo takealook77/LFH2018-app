@@ -40,21 +40,43 @@
 					<br>
 				</div>
 				<div class="list-group list-group-flush">
-					<div ng-repeat="acordao in acordaos | filter:searchText " class="list-group-item list-group-item-action flex-column align-items-start">
-						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1">
-								{{acordao.processo | cnj}}
-							</h5>
+					<div ng-repeat="acordao in acordaos | filter:searchText" class="row list-group-item list-group-item-action">
+						<div class="col-md-3">
+							<div class="btn-group" ng-repeat="classificacao in acordao.classificacoes">
+							<button type="button" class="btn btn-sm btn-light"> {{classificacao}}</button>
+							<button class="btn btn-success">							
+								<i class="fa fa-sm fa-thumbs-up"></i>
+							</button>
+							<button class="btn btn-danger">							
+								<i class="fa fa-sm fa-thumbs-down"></i>
+							</button>
 							
-							<small>{{acordao.movimentacao | date:'dd/MM/yy'}}</small>
+							</div>
+							<div class="dropdown" ng-if="!acordao.classificacoes">
+							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Classifique...
+							  </button>
+							  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							    <a class="dropdown-item" href="#">Bancário</a>
+							    <a class="dropdown-item" href="#">Comercial</a>
+							    <a class="dropdown-item" href="#">Outros</a>
+							  </div>
+							</div>
 						</div>
-						<p class="mb-1">{{acordao.classe}}</p>
-						<p>
-							<small>{{acordao.ementa	| limitTo: 100 | lowercase }}{{acordao.ementa .length > 100 ? '...' : ''}}</small>
-						</p>
-						<p>
-							<button ng-repeat="classificacao in acordao.classificacoes" type="button" class="btn btn-sm btn-light"> {{classificacao}}</button>
-						</p>
+						<div class="col-md-9">
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1">
+									{{acordao.processo | cnj}}
+								</h5>
+								
+								<small>{{acordao.movimentacao | date:'dd/MM/yy'}}</small>
+							</div>
+							<p class="mb-1">{{acordao.classe}}</p>
+							<p>
+								<small>{{acordao.ementa	| limitTo: 100 | lowercase }}{{acordao.ementa .length > 100 ? '...' : ''}}</small>
+							</p>
+						</div>
+						
 					</div>
 				</div>
 			</div>
