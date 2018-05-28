@@ -3,7 +3,7 @@
 var app = angular.module("ia3vpApp", ['ngSanitize']);
 
 
-app.controller("ementaCtrl", function($scope, $http) {
+app.controller("acordaoCtrl", function($scope, $http) {
 	
 	$scope.filtro = {};
 	$scope.acordaoAtual = null;
@@ -11,7 +11,9 @@ app.controller("ementaCtrl", function($scope, $http) {
 	$scope.buscar = function(textoBusca) {
 		var query = '';
 		if (textoBusca) {
-			query = 'q=ementa:' + textoBusca
+			query = 'q=*:' + textoBusca
+		} else {
+			query = 'sort=dtmovimentacao:desc'
 		}
 		
 		$http({
