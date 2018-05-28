@@ -13,7 +13,7 @@ app.controller("acordaoCtrl", function($scope, $http) {
 		if (textoBusca) {
 			query = 'q=*:' + textoBusca
 		} else {
-			query = 'sort=dtmovimentacao:desc'
+			query = 'sort=movimentacao:desc'
 		}
 		
 		$http({
