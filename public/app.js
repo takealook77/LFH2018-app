@@ -5,17 +5,21 @@ var app = angular.module("ia3vpApp", ['ngSanitize']);
 
 app.controller("ementaCtrl", function($scope, $http) {
 	
+	$scope.filtro = {};
+	$scope.acordaoAtual = null;
+	
 	$scope.buscar = function(textoBusca) {
 		var query = '';
 		if (textoBusca) {
 			query = 'q=ementa:' + textoBusca
 		}
+		
 		$http({
 			method : 'GET',
 			url : 'http://localhost:9200/ia3vp/acordao/_search/?' + query
 		}).then(function successCallback(response) {
 			$scope.acordaos = [];
-			$scope.filtro = {};
+			
 			
 			var data = response.data;
 			$scope.filtro.total = data.hits.total
@@ -29,6 +33,20 @@ app.controller("ementaCtrl", function($scope, $http) {
 			$scope.response = response;
 		});
 	};
+	
+
+	$scope.classificar = function(acordao) {
+
+		$http({
+			method : 'POST',
+			url : 'http://localhost:9200/ia3vp/acordao/' + acordao.cdprocesso,
+			data: acordao
+		}).then(function successCallback(response) {
+			$scope.response = response;
+		}, function errorCallback(response) {
+			$scope.response = response;
+		});
+	}
 	
 	$scope.buscar();
 });

@@ -14,46 +14,67 @@
 
   <body ng-controller="ementaCtrl">
 	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="#">ia3vp (Protótipo)</a>
+		<div class="col-md-2">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" 
+			aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="#">ia3vp (Protótipo)</a>
+		</div>
 
-    </nav>
+		<form class="col-md-10 input-group" ng-submit="buscar(filtro.textoBusca)">
+			<input type="text" class="form-control" placeholder="Busca"
+				ng-model="filtro.textoBusca" /> <span class="input-group-btn">
+				<button class="btn btn-primary" type="submit">
+					<span class="fa fa-search"></span>
+				</button>
+			</span>
+		</form>
+
+	</nav>
 	<br>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
-				<form class="input-group" ng-submit="buscar(filtro.textoBusca)">
-					<input type="text" class="form-control" placeholder="Busca" ng-model="filtro.textoBusca" />
-					<span class="input-group-btn">
-						<button class="btn btn-primary" type="submit">
-							<span class="fa fa-search"></span>
-						</button>
-					</span>
-				</form>
-				<br>
-			</div>
-			<div class="col-md-12">
-				<div>
-					<small class="float-right">Retornado {{acordaos.length}} acordãos de {{filtro.total}}</small>
-					<br>
+		
+			<div class="col-md-2 ">
+				<div class="list-group">
+				  <a href="#" class="list-group-item list-group-item-action active disabled">
+				    Todos
+				  </a>
+				  <a href="#" class="list-group-item list-group-item-action disabled">Classificados</a>
+				  <a href="#" class="list-group-item list-group-item-action disabled">Não classificados</a>
 				</div>
-				<div class="list-group list-group-flush">
-					<div ng-repeat="acordao in acordaos" class="list-group-item list-group-item-action row">
-						<div class="col-md-2">
-							<button ng-if="classificacao" type="button" class="btn btn-sm btn-block btn-light">{{classificacao}}</button>
-							<button ng-if="!classificacao" type="button" class="btn btn-sm btn-block btn-danger">Classificar</button>
-						</div>
-						<div class="col-md-9">
-							<h5 class="mb-1">
-								{{acordao.nuprocesso | cnj}}
-								<small>{{acordao.classe}}</small>
-							</h5>
-							{{acordao.ementa | limitTo: 100 | lowercase }}{{acordao.ementa .length > 100 ? '...' : ''}}
-						</div>
-						<div class="col-md-1">
-							<small>{{acordao.dtmovimentacao | date:'dd/MM/yy'}}</small>
+			</div>
+			
+			<div class="col-md-10">
+		
+				<div class="col-md-12">
+					<div>
+						<small class="float-right">Retornado {{acordaos.length}} acordãos de {{filtro.total}}</small>
+						<h2>Acórdaos</h2>
+					</div>
+					<div class="list-group list-group-flush">
+						<div ng-repeat="acordao in acordaos" class="list-group-item list-group-item-action row">
+							<div class="col-md-2">
+								<select ng-if="!classificacao" ng-change="classificar(acordao)" ng-model="acordao.classificacao" ng-class="{'btn-danger': !acordao.classificacao}" class="btn btn-sm btn-block btn-default">
+									<option value="">Classificar...</option>
+									<option value="BAN">Bancário</option>
+									<option value="CIV">Cívil</option>
+									<option value="CON">Contrato</option>
+									<option value="DAN">Danos morais</option>
+									<option value="FAM">Família</option>
+								</select>
+							</div>
+							<div class="col-md-9" ng-click="acordaoAtual = acordao">
+								<h5 class="mb-1">
+									{{acordao.nuprocesso | cnj}}
+									<small>{{acordao.classe}}</small>
+								</h5>
+								{{acordao.ementa | limitTo: 100 | lowercase }}{{acordao.ementa.length > 100 ? '...' : ''}}
+							</div>
+							<div class="col-md-1">
+								<small>{{acordao.dtmovimentacao | date:'dd/MM/yy'}}</small>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -61,6 +82,8 @@
 		</div>
 
 		<hr>
+		
+<!-- 		<pre>{{response | json}}</pre> -->
 
 		<footer>
 			<p>
