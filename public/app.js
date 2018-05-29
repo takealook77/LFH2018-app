@@ -8,28 +8,12 @@ app.controller("acordaoCtrl", function($scope, $http) {
 	$scope.filtro = {};
 	$scope.acordaoAtual = null;
 	
-	$scope.buscar = function(textoBusca) {
-		var query = '';
-		if (textoBusca) {
-			query = 'q=*:' + textoBusca
-		} else {
-			query = 'sort=movimentacao:desc'
-		}
-		
+	$scope.buscar = function(textoBusca) {	
 		$http({
 			method : 'GET',
-			url : 'http://localhost:9200/ia3vp/acordao/_search/?' + query
+			url : 'http://localhost:8080/'
 		}).then(function successCallback(response) {
-			$scope.acordaos = [];
-			
-			
-			var data = response.data;
-			$scope.filtro.total = data.hits.total
-
-			angular.forEach(data.hits.hits, function(value, key) {
-				this.push(value['_source']);
-			}, $scope.acordaos);
-
+			$scope.acordaos = response.data;
 		}, function errorCallback(response) {
 			$scope.response = response;
 		});
