@@ -27,7 +27,6 @@ app.controller("acordaoCtrl", function($scope, $http) {
 			$scope.filtro.total = data.hits.total
 
 			angular.forEach(data.hits.hits, function(value, key) {
-				// TODO: Ajustar campos no índice
 				this.push(value['_source']);
 			}, $scope.acordaos);
 
@@ -35,20 +34,6 @@ app.controller("acordaoCtrl", function($scope, $http) {
 			$scope.response = response;
 		});
 	};
-	
-
-	$scope.classificar = function(acordao) {
-
-		$http({
-			method : 'POST',
-			url : 'http://localhost:9200/ia3vp/acordao/' + acordao.cdprocesso,
-			data: acordao
-		}).then(function successCallback(response) {
-			$scope.response = response;
-		}, function errorCallback(response) {
-			$scope.response = response;
-		});
-	}
 	
 	$scope.buscar();
 });

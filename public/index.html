@@ -42,7 +42,7 @@
 				    Todos
 				  </a>
 				  <a href="#" class="list-group-item list-group-item-action disabled">Classificados</a>
-				  <a href="#" class="list-group-item list-group-item-action disabled">Não classificados</a>
+				  <a href="#" class="list-group-item list-group-item-action disabled">Sem classificação</a>
 				</div>
 			</div>
 			
@@ -54,14 +54,8 @@
 				<div class="list-group list-group-flush">
 					<div ng-repeat="acordao in acordaos" class="list-group-item list-group-item-action row">
 						<div class="col-md-2">
-							<select ng-if="!classificacao" ng-change="classificar(acordao)" ng-model="acordao.classificacao" ng-class="{'btn-danger': !acordao.classificacao}" class="btn btn-sm btn-block btn-default">
-								<option value="">Classificar...</option>
-								<option value="BAN">Bancário</option>
-								<option value="CIV">Cívil</option>
-								<option value="CON">Contrato</option>
-								<option value="DAN">Danos morais</option>
-								<option value="FAM">Família</option>
-							</select>
+							<span ng-if="acordao.classificacao" class="btn btn-info">{{acordao.classificacao}}</span>
+							<span ng-if="!acordao.classificacao" class="text-warning">Sem classificação</span>
 						</div>
 						<div class="col-md-9" ng-click="acordaoAtual = acordao">
 							<h5 class="mb-1">
