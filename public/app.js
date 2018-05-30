@@ -13,7 +13,7 @@ app.controller("acordaoCtrl", function($rootScope, $scope, $http) {
 	$scope.acordaoAtual = null;
 	
 	$scope.buscar = function(textoBusca) {
-		var query = textoBusca ? 'q=*:' + textoBusca : '';
+		var query = textoBusca ? 'q=processo:' + textoBusca.replace(/[^\d]/g, ''): '';
 		
 		$http({
 			method : 'GET',
