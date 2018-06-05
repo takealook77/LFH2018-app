@@ -7,7 +7,7 @@ var serverUrl
 
 app.controller("acordaoCtrl", function($rootScope, $scope, $http) {
 	
-	$rootScope.apiUrl = 'http:35.231.196.213/ia3vp/';
+	$rootScope.apiUrl = 'http://35.231.196.213/ia3vp/';
 	
 	$scope.filtro = {};
 	$scope.acordaoAtual = null;
