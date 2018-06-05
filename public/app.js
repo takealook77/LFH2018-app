@@ -15,7 +15,7 @@ app.controller("acordaoCtrl", function($rootScope, $scope, $http) {
 	$scope.buscar = function() {
 		var query = '';
 		if ($scope.filtro.textoBusca) {
-			query = 'q=processo:' + textoBusca.replace(/[^\d]/g, '');
+			query = 'q=processo:' + $scope.filtro.textoBusca.replace(/[^\d]/g, '');
 		}
 		
 		$http({
