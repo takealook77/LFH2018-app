@@ -7,13 +7,16 @@ var serverUrl
 
 app.controller("acordaoCtrl", function($rootScope, $scope, $http) {
 	
-	$rootScope.apiUrl = 'http://35.196.200.63/ia3vp/';
+	$rootScope.apiUrl = 'http:35.231.196.213/ia3vp/';
 	
 	$scope.filtro = {};
 	$scope.acordaoAtual = null;
 	
-	$scope.buscar = function(textoBusca) {
-		var query = textoBusca ? 'q=processo:' + textoBusca.replace(/[^\d]/g, ''): '';
+	$scope.buscar = function() {
+		var query = '';
+		if ($scope.filtro.textoBusca) {
+			query = 'q=processo:' + textoBusca.replace(/[^\d]/g, '');
+		}
 		
 		$http({
 			method : 'GET',
