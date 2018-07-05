@@ -1,2 +1,5 @@
-# ia3vp-app
-Aplicação (front-end) para a classificação de acordãos na 3 vice presidência
+# LFH2018-app
+
+## Lawtech Floripa Hackathon 2018
+
+Aplicação (front-end) para o Hackathon.

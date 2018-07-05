@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ia3vpApp">
+<html lang="en" ng-app="lfhApp">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,25 +12,15 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   </head>
 
-  <body ng-controller="acordaoCtrl">
+  <body ng-controller="lfhCtrl">
 	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
 		<div class="col-md-2">
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" 
-			aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<a class="navbar-brand" href="#">ia3vp - Classificação</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" 
+				aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="#">{{name}}</a>
 		</div>
-
-		<form class="col-md-10 input-group" ng-submit="buscar()">
-			<input type="text" class="form-control" placeholder="Digite o número do processo..."
-				ng-model="filtro.textoBusca" /> <span class="input-group-btn">
-				<button class="btn btn-primary" type="submit">
-					<span class="fa fa-search"></span>
-				</button>
-			</span>
-		</form>
-
 	</nav>
 	<br>
 	<div class="container-fluid">
@@ -38,46 +28,26 @@
 		
 			<div class="col-md-2 ">
 				<div class="list-group">
-				  <a href="#" class="list-group-item list-group-item-action active disabled">
-				    Todos
-				  </a>
-				  <a href="#" class="list-group-item list-group-item-action disabled">Classificados</a>
-				  <a href="#" class="list-group-item list-group-item-action disabled">Sem classificação</a>
+				  <a href="#" class="list-group-item list-group-item-action active disabled">Menu #1</a>
+				  <a href="#" class="list-group-item list-group-item-action disabled"> Menu #2</a>
+				  <a href="#" class="list-group-item list-group-item-action disabled"> Menu #3</a>
 				</div>
 			</div>
 			
 			<div class="col-md-10">
 				<div>
-					<h2>Acórdaos</h2>
-				</div>
-				<div class="list-group list-group-flush">
-					<div ng-repeat="acordao in acordaos" class="list-group-item list-group-item-action row">
-						<div class="col-md-2">
-							<span ng-if="acordao.classificacao" class="btn btn-info">{{acordao.classificacao}}</span>
-							<span ng-if="!acordao.classificacao" class="text-warning">Sem classificação</span>
-						</div>
-						<div class="col-md-9" ng-click="acordaoAtual = acordao">
-							<h5 class="mb-1">
-								{{acordao.processo | cnj}}
-								<small>{{acordao.classe}}</small>
-							</h5>
-							{{acordao.ementa | limitTo: 100 | lowercase }}{{acordao.ementa.length > 100 ? '...' : ''}}
-						</div>
-						<div class="col-md-1">
-							<small>{{acordao.movimentacao | date:'dd/MM/yy'}}</small>
-						</div>
-					</div>
+					<h2>{{name}}</h2>
 				</div>
 			</div>
 		</div>
 
 		<hr>
 		
-<!-- 		<pre>{{response | json}}</pre> -->
+<!-- 		<pre>{{name | json}}</pre> -->
 
 		<footer>
 			<p>
-				&copy; <a href="https://github.com/ia-tj" target="_blank">https://github.com/ia-tj</a>
+				&copy; <a href="https://github.com/ia-tj" target="_blank">https://github.com/ia-tj/LFH2018-app</a>
 			</p>
 		</footer>
 	</div>
