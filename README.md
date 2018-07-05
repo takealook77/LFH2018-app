@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ia-tj/LFH2018-api.svg?branch=master)](https://travis-ci.org/ia-tj/LFH2018-api)
+[![Build Status](https://travis-ci.org/ia-tj/LFH2018-app.svg?branch=master)](https://travis-ci.org/ia-tj/LFH2018-app)
 
 # LFH2018-app
 
