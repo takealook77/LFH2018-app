@@ -2,6 +2,8 @@
 
 # LFH2018-app
 
+https://lfh2018-app.herokuapp.com/
+
 ## Lawtech Floripa Hackathon 2018
 
 Aplicação (front-end) para o Hackathon.
