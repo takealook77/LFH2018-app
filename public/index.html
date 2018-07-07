@@ -7,25 +7,29 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Hackathon</title>
+    <title>IA[RR]² - Lawtech Hackathon 2018</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+	
+	<link rel="stylesheet" href="stylesheets/main.css">
+	
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
 
-  <body ng-controller="lfhCtrl">
-	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+  <body>
+	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" ng-controller="lfhCtrl">
 		<div class="col-md-2">
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" 
 				aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="#">{{name}}</a>
+			<a class="navbar-brand" href="#"><strong>{{brand}}</strong> <small>{{brandDetail}}</small></a>
 		</div>
 	</nav>
 	<br>
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row" ng-if="login">
 		
 			<div class="col-md-2 ">
 				<div class="list-group">
@@ -40,13 +44,48 @@
 					<h2>{{name}}</h2>
 				</div>
 			</div>
+			
+
+		</div>
+		
+		<div ng-show="!login">
+			<div class="painel-principal row justify-content-md-center">
+				<div class="col-md-4">
+					<h1 class="jumbotron-heading">Identificação de Recursos Repetitivos</h1>
+	         		<p class="lead text-muted">(Descrever...)</p>
+				</div>
+				
+				<div class="col-md-3 offset-md-1">
+					<form ng-submit="myFunc()">
+				        <div class="form-group">
+				        	<input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+				        </div>
+				        <div class="form-group">
+				        	<input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+				        </div>
+				        <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="entregas row justify-content-md-center">
+				<div class="col-md-4 text-center">
+					<div class="btn btn-link">Pitch</div>
+				</div>
+				<div class="col-md-4 text-center">
+					<div class="btn btn-link">Código-fonte</div>
+				</div>
+				<div class="col-md-4 text-center">
+					<div class="btn btn-link">Equipe</div>
+				</div>
+			</div>
 		</div>
 
 		<hr>
 		
 <!-- 		<pre>{{name | json}}</pre> -->
 
-		<footer>
+		<footer id="footer">
 			<p>
 				&copy; <a href="https://github.com/ia-tj" target="_blank">https://github.com/ia-tj/LFH2018-app</a>
 			</p>
@@ -54,8 +93,8 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular-sanitize.js" crossorigin="anonymous"></script>
 		
