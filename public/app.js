@@ -2,13 +2,18 @@
 
 var app = angular.module("lfhApp", ['ngSanitize']);
 
-var serverUrl
-
-
-app.controller("lfhCtrl", function($rootScope, $scope, $http) {
+app.controller("lfhCtrl", function($rootScope, $scope, api) {
 	
-	$scope.brand = 'IA[RR]²';
-	$scope.brandDetail = 'Lawtech Hackathon 2018';
+	$rootScope.brand = 'IA[RR]²';
+	$rootScope.brandDetail = 'Lawtech Hackathon 2018';
 	
+	$scope.auth = function() {
+		$scope.usuario = {email: $scope.email};
+	}
 	
+	var carregarLista = function() {
+		$scope.documentos = api.getDocumentos();
+	}
+	
+	carregarLista();
 });

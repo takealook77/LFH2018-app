@@ -17,8 +17,8 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
 
-  <body>
-	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse" ng-controller="lfhCtrl">
+  <body ng-controller="lfhCtrl" ng-init="email='carlos.roberto@lawtech.floripa.br'; password='123456'">
+	<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
 		<div class="col-md-2">
 			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" 
 				aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +29,7 @@
 	</nav>
 	<br>
 	<div class="container-fluid">
-		<div class="row" ng-if="login">
+		<div class="row" ng-if="usuario">
 		
 			<div class="col-md-2 ">
 				<div class="list-group">
@@ -40,15 +40,15 @@
 			</div>
 			
 			<div class="col-md-10">
-				<div>
-					<h2>{{name}}</h2>
+				<div ng-repeat="doc in documentos">
+					{{doc.numero_processo}}
 				</div>
 			</div>
 			
 
 		</div>
 		
-		<div ng-show="!login">
+		<div ng-show="!usuario">
 			<div class="painel-principal row justify-content-md-center">
 				<div class="col-md-4">
 					<h1 class="jumbotron-heading">Identificação de Recursos Repetitivos</h1>
@@ -56,12 +56,12 @@
 				</div>
 				
 				<div class="col-md-3 offset-md-1">
-					<form ng-submit="myFunc()">
+					<form name="login" ng-submit="auth()">
 				        <div class="form-group">
-				        	<input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+				        	<input type="email" ng-model="email" class="form-control" placeholder="Email" required autofocus>
 				        </div>
 				        <div class="form-group">
-				        	<input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
+				        	<input type="password" ng-model="password" class="form-control" placeholder="Senha" required>
 				        </div>
 				        <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
 					</form>
@@ -83,7 +83,7 @@
 
 		<hr>
 		
-<!-- 		<pre>{{name | json}}</pre> -->
+		<pre>{{documentos | json}}</pre>
 
 		<footer id="footer">
 			<p>
@@ -99,5 +99,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular-sanitize.js" crossorigin="anonymous"></script>
 		
 	<script src="app.js"></script>
+	<script src="api.js"></script>
   </body>
 </html>
